@@ -72,7 +72,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupport">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="{{ url('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About Us</a>
@@ -127,7 +127,8 @@
                     <td style="color: white">{{ $appoint->date }}</td>
                     <td style="color: white">{{ $appoint->message }}</td>
                     <td style="color: white">{{ $appoint->status }}</td>
-                    <td><a class="btn btn-danger" href="#">Cancel</a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Are you sure to confirm')"
+                            href="{{ url('cancel_appointment', $appoint->id) }}">Cancel</a></td>
                 </tr>
             @endforeach
         </table>

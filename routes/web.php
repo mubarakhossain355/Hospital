@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirect']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'redirect'])->middleware('auth', 'verified');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -26,3 +26,12 @@ Route::post('/upload_doctor', [App\Http\Controllers\AdminController::class, 'upl
 
 Route::post('/appointment', [App\Http\Controllers\HomeController::class, 'appointment']);
 Route::get('/myappointment', [App\Http\Controllers\HomeController::class, 'myappointment']);
+Route::get('/cancel_appointment/{id}', [App\Http\Controllers\HomeController::class, 'cancel_appointment']);
+
+Route::get('/showappointment', [App\Http\Controllers\AdminController::class, 'showappointment']);
+Route::get('/approved/{id}', [App\Http\Controllers\AdminController::class, 'approved']);
+Route::get('/canceled/{id}', [App\Http\Controllers\AdminController::class, 'canceled']);
+Route::get('/showdoctor', [App\Http\Controllers\AdminController::class, 'showdoctor']);
+Route::get('/deletedoctor/{id}', [App\Http\Controllers\AdminController::class, 'deletedoctor']);
+Route::get('/updatedoctor/{id}', [App\Http\Controllers\AdminController::class, 'updatedoctor']);
+Route::post('/editdoctor/{id}', [App\Http\Controllers\AdminController::class, 'editdoctor']);
